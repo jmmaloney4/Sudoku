@@ -7,6 +7,13 @@ public class Puzzle {
 	protected int[] values;
 	protected boolean[][] possibleValues = new boolean[81][9];
 
+	public Puzzle() {
+		values = new int[81];
+		for (int a = 0; a < values.length; a++) {
+			values[a] = 0;
+		}
+	}
+
 	public Puzzle(int[] values) {
 		this.values = values;
 	}
@@ -172,4 +179,401 @@ public class Puzzle {
 				+ column + " And Row " + row);
 		possibleValues[a][9] = false;
 	}
+
+	public int[] getRow(int r) {
+		int[] rv = new int[9];
+		rv[0] = this.getValue(1, r);
+		rv[1] = this.getValue(2, r);
+		rv[2] = this.getValue(3, r);
+		rv[3] = this.getValue(4, r);
+		rv[4] = this.getValue(5, r);
+		rv[5] = this.getValue(6, r);
+		rv[6] = this.getValue(7, r);
+		rv[7] = this.getValue(8, r);
+		rv[8] = this.getValue(9, r);
+		System.out.println("Returning " + Arrays.toString(rv) + " As Row " + r);
+		return rv;
+	}
+
+	public int[] getColumn(int c) {
+		int[] rv = new int[9];
+		rv[0] = this.getValue(c, 1);
+		rv[1] = this.getValue(c, 2);
+		rv[2] = this.getValue(c, 3);
+		rv[3] = this.getValue(c, 4);
+		rv[4] = this.getValue(c, 5);
+		rv[5] = this.getValue(c, 6);
+		rv[6] = this.getValue(c, 7);
+		rv[7] = this.getValue(c, 8);
+		rv[8] = this.getValue(c, 9);
+		System.out.println("Returning " + Arrays.toString(rv) + " As Column "
+				+ c);
+		return rv;
+	}
+
+	public int[] getSquare(int column, int row) {
+		int c = 0;
+		int r = 0;
+		int[] rv = new int[9];
+
+		switch (column) {
+		case 1:
+			c = 1;
+			break;
+		case 2:
+			c = 1;
+			break;
+		case 3:
+			c = 1;
+			break;
+		case 4:
+			c = 2;
+			break;
+		case 5:
+			c = 2;
+			break;
+		case 6:
+			c = 2;
+			break;
+		case 7:
+			c = 3;
+			break;
+		case 8:
+			c = 3;
+			break;
+		case 9:
+			c = 3;
+			break;
+		}
+
+		switch (row) {
+		case 1:
+			r = 1;
+			break;
+		case 2:
+			r = 1;
+			break;
+		case 3:
+			r = 1;
+			break;
+		case 4:
+			r = 2;
+			break;
+		case 5:
+			r = 2;
+			break;
+		case 6:
+			r = 2;
+			break;
+		case 7:
+			r = 3;
+			break;
+		case 8:
+			r = 3;
+			break;
+		case 9:
+			r = 3;
+			break;
+		}
+
+		if (r == 1 && c == 1) {
+			rv[1] = this.getValue(1, 1);
+			rv[1] = this.getValue(2, 1);
+			rv[1] = this.getValue(3, 1);
+			rv[1] = this.getValue(1, 2);
+			rv[1] = this.getValue(2, 2);
+			rv[1] = this.getValue(3, 2);
+			rv[1] = this.getValue(1, 3);
+			rv[1] = this.getValue(2, 3);
+			rv[1] = this.getValue(3, 3);
+		}
+
+		if (r == 2 && c == 1) {
+			rv[1] = this.getValue(1, 4);
+			rv[1] = this.getValue(2, 4);
+			rv[1] = this.getValue(3, 4);
+			rv[1] = this.getValue(1, 5);
+			rv[1] = this.getValue(2, 5);
+			rv[1] = this.getValue(3, 5);
+			rv[1] = this.getValue(1, 6);
+			rv[1] = this.getValue(2, 6);
+			rv[1] = this.getValue(3, 6);
+		}
+
+		if (r == 3 && c == 1) {
+			rv[1] = this.getValue(1, 7);
+			rv[1] = this.getValue(2, 7);
+			rv[1] = this.getValue(3, 7);
+			rv[1] = this.getValue(1, 8);
+			rv[1] = this.getValue(2, 8);
+			rv[1] = this.getValue(3, 8);
+			rv[1] = this.getValue(1, 9);
+			rv[1] = this.getValue(2, 9);
+			rv[1] = this.getValue(3, 9);
+		}
+
+		if (r == 1 && c == 2) {
+			rv[1] = this.getValue(4, 1);
+			rv[1] = this.getValue(5, 1);
+			rv[1] = this.getValue(6, 1);
+			rv[1] = this.getValue(4, 2);
+			rv[1] = this.getValue(5, 2);
+			rv[1] = this.getValue(6, 2);
+			rv[1] = this.getValue(4, 3);
+			rv[1] = this.getValue(5, 3);
+			rv[1] = this.getValue(6, 3);
+		}
+
+		if (r == 2 && c == 2) {
+			rv[1] = this.getValue(4, 4);
+			rv[1] = this.getValue(5, 4);
+			rv[1] = this.getValue(6, 4);
+			rv[1] = this.getValue(4, 5);
+			rv[1] = this.getValue(5, 5);
+			rv[1] = this.getValue(6, 5);
+			rv[1] = this.getValue(4, 6);
+			rv[1] = this.getValue(5, 6);
+			rv[1] = this.getValue(6, 6);
+		}
+
+		if (r == 3 && c == 2) {
+			rv[1] = this.getValue(4, 7);
+			rv[1] = this.getValue(5, 7);
+			rv[1] = this.getValue(6, 7);
+			rv[1] = this.getValue(4, 8);
+			rv[1] = this.getValue(5, 8);
+			rv[1] = this.getValue(6, 8);
+			rv[1] = this.getValue(4, 9);
+			rv[1] = this.getValue(5, 9);
+			rv[1] = this.getValue(6, 9);
+		}
+
+		if (r == 1 && c == 3) {
+			rv[1] = this.getValue(7, 1);
+			rv[1] = this.getValue(8, 1);
+			rv[1] = this.getValue(9, 1);
+			rv[1] = this.getValue(7, 2);
+			rv[1] = this.getValue(8, 2);
+			rv[1] = this.getValue(9, 2);
+			rv[1] = this.getValue(7, 3);
+			rv[1] = this.getValue(8, 3);
+			rv[1] = this.getValue(9, 3);
+		}
+
+		if (r == 2 && c == 3) {
+			rv[1] = this.getValue(7, 4);
+			rv[1] = this.getValue(8, 4);
+			rv[1] = this.getValue(9, 4);
+			rv[1] = this.getValue(7, 5);
+			rv[1] = this.getValue(8, 5);
+			rv[1] = this.getValue(9, 5);
+			rv[1] = this.getValue(7, 6);
+			rv[1] = this.getValue(8, 6);
+			rv[1] = this.getValue(9, 6);
+		}
+
+		if (r == 3 && c == 3) {
+			rv[1] = this.getValue(7, 7);
+			rv[1] = this.getValue(8, 7);
+			rv[1] = this.getValue(9, 7);
+			rv[1] = this.getValue(7, 8);
+			rv[1] = this.getValue(8, 8);
+			rv[1] = this.getValue(9, 8);
+			rv[1] = this.getValue(7, 9);
+			rv[1] = this.getValue(8, 9);
+			rv[1] = this.getValue(9, 9);
+		}
+		System.out.println("Returning " + Arrays.toString(rv) + " As Square "
+				+ r + ", " + c);
+
+		return rv;
+	}
+
+	public boolean[][] getSquarePVals(int column, int row) {
+		int c = 0;
+		int r = 0;
+		boolean[][] rv = new boolean[9][9];
+
+		switch (column) {
+		case 1:
+			c = 1;
+			break;
+		case 2:
+			c = 1;
+			break;
+		case 3:
+			c = 1;
+			break;
+		case 4:
+			c = 2;
+			break;
+		case 5:
+			c = 2;
+			break;
+		case 6:
+			c = 2;
+			break;
+		case 7:
+			c = 3;
+			break;
+		case 8:
+			c = 3;
+			break;
+		case 9:
+			c = 3;
+			break;
+		}
+
+		switch (row) {
+		case 1:
+			r = 1;
+			break;
+		case 2:
+			r = 1;
+			break;
+		case 3:
+			r = 1;
+			break;
+		case 4:
+			r = 2;
+			break;
+		case 5:
+			r = 2;
+			break;
+		case 6:
+			r = 2;
+			break;
+		case 7:
+			r = 3;
+			break;
+		case 8:
+			r = 3;
+			break;
+		case 9:
+			r = 3;
+			break;
+		}
+
+		if (r == 1 && c == 1) {
+			rv[1] = this.getPossibleValues(1, 1);
+			rv[1] = this.getPossibleValues(2, 1);
+			rv[1] = this.getPossibleValues(3, 1);
+			rv[1] = this.getPossibleValues(1, 2);
+			rv[1] = this.getPossibleValues(2, 2);
+			rv[1] = this.getPossibleValues(3, 2);
+			rv[1] = this.getPossibleValues(1, 3);
+			rv[1] = this.getPossibleValues(2, 3);
+			rv[1] = this.getPossibleValues(3, 3);
+		}
+
+		if (r == 2 && c == 1) {
+			rv[1] = this.getPossibleValues(1, 4);
+			rv[1] = this.getPossibleValues(2, 4);
+			rv[1] = this.getPossibleValues(3, 4);
+			rv[1] = this.getPossibleValues(1, 5);
+			rv[1] = this.getPossibleValues(2, 5);
+			rv[1] = this.getPossibleValues(3, 5);
+			rv[1] = this.getPossibleValues(1, 6);
+			rv[1] = this.getPossibleValues(2, 6);
+			rv[1] = this.getPossibleValues(3, 6);
+		}
+
+		if (r == 3 && c == 1) {
+			rv[1] = this.getPossibleValues(1, 7);
+			rv[1] = this.getPossibleValues(2, 7);
+			rv[1] = this.getPossibleValues(3, 7);
+			rv[1] = this.getPossibleValues(1, 8);
+			rv[1] = this.getPossibleValues(2, 8);
+			rv[1] = this.getPossibleValues(3, 8);
+			rv[1] = this.getPossibleValues(1, 9);
+			rv[1] = this.getPossibleValues(2, 9);
+			rv[1] = this.getPossibleValues(3, 9);
+		}
+
+		if (r == 1 && c == 2) {
+			rv[1] = this.getPossibleValues(4, 1);
+			rv[1] = this.getPossibleValues(5, 1);
+			rv[1] = this.getPossibleValues(6, 1);
+			rv[1] = this.getPossibleValues(4, 2);
+			rv[1] = this.getPossibleValues(5, 2);
+			rv[1] = this.getPossibleValues(6, 2);
+			rv[1] = this.getPossibleValues(4, 3);
+			rv[1] = this.getPossibleValues(5, 3);
+			rv[1] = this.getPossibleValues(6, 3);
+		}
+
+		if (r == 2 && c == 2) {
+			rv[1] = this.getPossibleValues(4, 4);
+			rv[1] = this.getPossibleValues(5, 4);
+			rv[1] = this.getPossibleValues(6, 4);
+			rv[1] = this.getPossibleValues(4, 5);
+			rv[1] = this.getPossibleValues(5, 5);
+			rv[1] = this.getPossibleValues(6, 5);
+			rv[1] = this.getPossibleValues(4, 6);
+			rv[1] = this.getPossibleValues(5, 6);
+			rv[1] = this.getPossibleValues(6, 6);
+		}
+
+		if (r == 3 && c == 2) {
+			rv[1] = this.getPossibleValues(4, 7);
+			rv[1] = this.getPossibleValues(5, 7);
+			rv[1] = this.getPossibleValues(6, 7);
+			rv[1] = this.getPossibleValues(4, 8);
+			rv[1] = this.getPossibleValues(5, 8);
+			rv[1] = this.getPossibleValues(6, 8);
+			rv[1] = this.getPossibleValues(4, 9);
+			rv[1] = this.getPossibleValues(5, 9);
+			rv[1] = this.getPossibleValues(6, 9);
+		}
+
+		if (r == 1 && c == 3) {
+			rv[1] = this.getPossibleValues(7, 1);
+			rv[1] = this.getPossibleValues(8, 1);
+			rv[1] = this.getPossibleValues(9, 1);
+			rv[1] = this.getPossibleValues(7, 2);
+			rv[1] = this.getPossibleValues(8, 2);
+			rv[1] = this.getPossibleValues(9, 2);
+			rv[1] = this.getPossibleValues(7, 3);
+			rv[1] = this.getPossibleValues(8, 3);
+			rv[1] = this.getPossibleValues(9, 3);
+		}
+
+		if (r == 2 && c == 3) {
+			rv[1] = this.getPossibleValues(7, 4);
+			rv[1] = this.getPossibleValues(8, 4);
+			rv[1] = this.getPossibleValues(9, 4);
+			rv[1] = this.getPossibleValues(7, 5);
+			rv[1] = this.getPossibleValues(8, 5);
+			rv[1] = this.getPossibleValues(9, 5);
+			rv[1] = this.getPossibleValues(7, 6);
+			rv[1] = this.getPossibleValues(8, 6);
+			rv[1] = this.getPossibleValues(9, 6);
+		}
+
+		if (r == 3 && c == 3) {
+			rv[1] = this.getPossibleValues(7, 7);
+			rv[1] = this.getPossibleValues(8, 7);
+			rv[1] = this.getPossibleValues(9, 7);
+			rv[1] = this.getPossibleValues(7, 8);
+			rv[1] = this.getPossibleValues(8, 8);
+			rv[1] = this.getPossibleValues(9, 8);
+			rv[1] = this.getPossibleValues(7, 9);
+			rv[1] = this.getPossibleValues(8, 9);
+			rv[1] = this.getPossibleValues(9, 9);
+		}
+		System.out.println("Returning " + Arrays.toString(rv) + " As Square "
+				+ r + ", " + c);
+
+		return rv;
+	}
+
+	public void update(int column, int row, int update) {
+		boolean[][] sq = this.getSquarePVals(column, row);
+		for (int c = 0; c < sq.length; c++) {
+			sq[c][update] = false;
+			System.out.println("Updating Puzzle...");
+			Sudoku.UIMgr.SetText("Updating Puzzle...");
+		}
+	}
+
 }
