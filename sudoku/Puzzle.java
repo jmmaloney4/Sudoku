@@ -211,6 +211,37 @@ public class Puzzle {
 		return rv;
 	}
 
+	public boolean[][] getRowPVals(int r) {
+		boolean[][] rv = new boolean[9][9];
+		rv[0] = this.getPossibleValues(1, r);
+		rv[1] = this.getPossibleValues(2, r);
+		rv[2] = this.getPossibleValues(3, r);
+		rv[3] = this.getPossibleValues(4, r);
+		rv[4] = this.getPossibleValues(5, r);
+		rv[5] = this.getPossibleValues(6, r);
+		rv[6] = this.getPossibleValues(7, r);
+		rv[7] = this.getPossibleValues(8, r);
+		rv[8] = this.getPossibleValues(9, r);
+		System.out.println("Returning " + Arrays.toString(rv) + " As Row " + r);
+		return rv;
+	}
+
+	public boolean[][] getColumnPVals(int c) {
+		boolean[][] rv = new boolean[9][9];
+		rv[0] = this.getPossibleValues(c, 1);
+		rv[1] = this.getPossibleValues(c, 2);
+		rv[2] = this.getPossibleValues(c, 3);
+		rv[3] = this.getPossibleValues(c, 4);
+		rv[4] = this.getPossibleValues(c, 5);
+		rv[5] = this.getPossibleValues(c, 6);
+		rv[6] = this.getPossibleValues(c, 7);
+		rv[7] = this.getPossibleValues(c, 8);
+		rv[8] = this.getPossibleValues(c, 9);
+		System.out.println("Returning " + Arrays.toString(rv) + " As Column "
+				+ c);
+		return rv;
+	}
+
 	public int[] getSquare(int column, int row) {
 		int c = 0;
 		int r = 0;
@@ -568,12 +599,32 @@ public class Puzzle {
 	}
 
 	public void update(int column, int row, int update) {
+		System.out
+				.println("Updating Puzzle For " + column + ", " + row + "...");
+		Sudoku.UIMgr.SetText("Updating Puzzle For " + column + ", " + row
+				+ "...");
+		boolean[][] c = this.getColumnPVals(column);
+		boolean[][] r = this.getRowPVals(row);
 		boolean[][] sq = this.getSquarePVals(column, row);
-		for (int c = 0; c < sq.length; c++) {
-			sq[c][update] = false;
-			System.out.println("Updating Puzzle...");
-			Sudoku.UIMgr.SetText("Updating Puzzle...");
+		for (int d = 0; d < sq.length; d++) {
+			sq[d][update] = false;
+			System.out.println("Updating Square For " + column + ", " + row
+					+ "...");
+			Sudoku.UIMgr.SetText("Updating Square For " + column + ", " + row
+					+ "...");
 		}
-	}
 
+		for (int d = 0; d < r.length; d++) {
+			r[d][update] = false;
+			System.out.println("Updating Row" + row + "...");
+			Sudoku.UIMgr.SetText("Updating Row " + row + "...");
+		}
+
+		for (int d = 0; d < c.length; d++) {
+			c[d][update] = false;
+			System.out.println("Updating Column " + column + "...");
+			Sudoku.UIMgr.SetText("Updating Column " + column + "...");
+		}
+
+	}
 }
