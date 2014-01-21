@@ -2,7 +2,7 @@ package sudoku;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -16,18 +16,8 @@ public class Sudoku {
 	protected static Puzzle puzzle = new Puzzle();
 	public static final Pattern COMMA_PATTERN = Pattern.compile("\\s*,*\\s*");
 
-	public static void main(String[] args) throws IOException,
-			InterruptedException {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
-		System.out.println("Welcome to the Sudoku Puzzle Solving Program");
-		int needed = 10;
-		// Check if user has submitted arguments
-
-		if (args.length == 0) {
-			System.err.println("E: Not enough arguments");
-			System.err.println(Sudoku.USAGE_STATMENT);
-			System.exit(1);
-		}
 
 		// Starts the UI view
 		try {
@@ -46,11 +36,30 @@ public class Sudoku {
 			e.printStackTrace();
 		}
 
+		System.out.println("Welcome to the Sudoku Puzzle Solving Program");
+		int needed = 10;
+		// Check if user has submitted arguments
+
+		if (args.length == 0) {
+			System.err.println("E: Not enough arguments");
+			System.err.println(Sudoku.USAGE_STATMENT);
+			UIMgr.SetText("There Were No Arguments To The Program, Exiting...");
+			Thread.sleep(7000);
+			System.exit(1);
+		}
+
 		// Sleep Thread to allow UI time to load
 		Thread.sleep(750);
 
 		File file = new File(args[0]);
-		Scanner scan = new Scanner(new FileInputStream(file));
+		Scanner scan;
+		FileInputStream fis = null;
+		try {
+			fis = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			UIMgr.SetText("File Was Not Found At: " + args[0]);
+		}
+		scan = new Scanner(fis);
 		scan.useDelimiter(COMMA_PATTERN);
 
 		for (int f = 0; f < infile.length; f++) {

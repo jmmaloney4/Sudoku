@@ -235,15 +235,15 @@ public class Puzzle {
 
 	public boolean[][] getColumnPVals(int c) {
 		boolean[][] rv = new boolean[9][9];
-		rv[0] = this.getPossibleValues(c, 1);
-		rv[1] = this.getPossibleValues(c, 2);
-		rv[2] = this.getPossibleValues(c, 3);
-		rv[3] = this.getPossibleValues(c, 4);
-		rv[4] = this.getPossibleValues(c, 5);
-		rv[5] = this.getPossibleValues(c, 6);
-		rv[6] = this.getPossibleValues(c, 7);
-		rv[7] = this.getPossibleValues(c, 8);
-		rv[8] = this.getPossibleValues(c, 9);
+		rv[0] = this.getPossibleValues(c, 0);
+		rv[1] = this.getPossibleValues(c, 1);
+		rv[2] = this.getPossibleValues(c, 2);
+		rv[3] = this.getPossibleValues(c, 3);
+		rv[4] = this.getPossibleValues(c, 4);
+		rv[5] = this.getPossibleValues(c, 5);
+		rv[6] = this.getPossibleValues(c, 6);
+		rv[7] = this.getPossibleValues(c, 7);
+		rv[8] = this.getPossibleValues(c, 8);
 		System.out.println("Returning " + Arrays.toString(rv) + " As Column "
 				+ c);
 		return rv;
@@ -493,115 +493,114 @@ public class Puzzle {
 		}
 
 		if (r == 1 && c == 1) {
+			rv[1] = this.getPossibleValues(0, 0);
+			rv[1] = this.getPossibleValues(1, 0);
+			rv[1] = this.getPossibleValues(2, 0);
+			rv[1] = this.getPossibleValues(0, 1);
 			rv[1] = this.getPossibleValues(1, 1);
 			rv[1] = this.getPossibleValues(2, 1);
-			rv[1] = this.getPossibleValues(3, 1);
+			rv[1] = this.getPossibleValues(0, 2);
 			rv[1] = this.getPossibleValues(1, 2);
 			rv[1] = this.getPossibleValues(2, 2);
-			rv[1] = this.getPossibleValues(3, 2);
-			rv[1] = this.getPossibleValues(1, 3);
-			rv[1] = this.getPossibleValues(2, 3);
-			rv[1] = this.getPossibleValues(3, 3);
 		}
 
 		if (r == 2 && c == 1) {
+			rv[1] = this.getPossibleValues(0, 3);
+			rv[1] = this.getPossibleValues(1, 3);
+			rv[1] = this.getPossibleValues(2, 3);
+			rv[1] = this.getPossibleValues(0, 4);
 			rv[1] = this.getPossibleValues(1, 4);
 			rv[1] = this.getPossibleValues(2, 4);
-			rv[1] = this.getPossibleValues(3, 4);
+			rv[1] = this.getPossibleValues(0, 5);
 			rv[1] = this.getPossibleValues(1, 5);
 			rv[1] = this.getPossibleValues(2, 5);
-			rv[1] = this.getPossibleValues(3, 5);
-			rv[1] = this.getPossibleValues(1, 6);
-			rv[1] = this.getPossibleValues(2, 6);
-			rv[1] = this.getPossibleValues(3, 6);
-		}
 
-		if (r == 3 && c == 1) {
-			rv[1] = this.getPossibleValues(1, 7);
-			rv[1] = this.getPossibleValues(2, 7);
-			rv[1] = this.getPossibleValues(3, 7);
-			rv[1] = this.getPossibleValues(1, 8);
-			rv[1] = this.getPossibleValues(2, 8);
-			rv[1] = this.getPossibleValues(3, 8);
-			rv[1] = this.getPossibleValues(1, 9);
-			rv[1] = this.getPossibleValues(2, 9);
-			rv[1] = this.getPossibleValues(3, 9);
-		}
+			if (r == 3 && c == 1) {
+				rv[1] = this.getPossibleValues(0, 6);
+				rv[1] = this.getPossibleValues(1, 6);
+				rv[1] = this.getPossibleValues(2, 6);
+				rv[1] = this.getPossibleValues(0, 7);
+				rv[1] = this.getPossibleValues(1, 7);
+				rv[1] = this.getPossibleValues(2, 7);
+				rv[1] = this.getPossibleValues(0, 8);
+				rv[1] = this.getPossibleValues(1, 8);
+				rv[1] = this.getPossibleValues(2, 8);
+			}
 
-		if (r == 1 && c == 2) {
-			rv[1] = this.getPossibleValues(4, 1);
-			rv[1] = this.getPossibleValues(5, 1);
-			rv[1] = this.getPossibleValues(6, 1);
-			rv[1] = this.getPossibleValues(4, 2);
-			rv[1] = this.getPossibleValues(5, 2);
-			rv[1] = this.getPossibleValues(6, 2);
-			rv[1] = this.getPossibleValues(4, 3);
-			rv[1] = this.getPossibleValues(5, 3);
-			rv[1] = this.getPossibleValues(6, 3);
-		}
+			if (r == 1 && c == 2) {
+				rv[1] = this.getPossibleValues(4, 1);
+				rv[1] = this.getPossibleValues(5, 1);
+				rv[1] = this.getPossibleValues(6, 1);
+				rv[1] = this.getPossibleValues(4, 2);
+				rv[1] = this.getPossibleValues(5, 2);
+				rv[1] = this.getPossibleValues(6, 2);
+				rv[1] = this.getPossibleValues(4, 3);
+				rv[1] = this.getPossibleValues(5, 3);
+				rv[1] = this.getPossibleValues(6, 3);
+			}
 
-		if (r == 2 && c == 2) {
-			rv[1] = this.getPossibleValues(4, 4);
-			rv[1] = this.getPossibleValues(5, 4);
-			rv[1] = this.getPossibleValues(6, 4);
-			rv[1] = this.getPossibleValues(4, 5);
-			rv[1] = this.getPossibleValues(5, 5);
-			rv[1] = this.getPossibleValues(6, 5);
-			rv[1] = this.getPossibleValues(4, 6);
-			rv[1] = this.getPossibleValues(5, 6);
-			rv[1] = this.getPossibleValues(6, 6);
-		}
+			if (r == 2 && c == 2) {
+				rv[1] = this.getPossibleValues(4, 4);
+				rv[1] = this.getPossibleValues(5, 4);
+				rv[1] = this.getPossibleValues(6, 4);
+				rv[1] = this.getPossibleValues(4, 5);
+				rv[1] = this.getPossibleValues(5, 5);
+				rv[1] = this.getPossibleValues(6, 5);
+				rv[1] = this.getPossibleValues(4, 6);
+				rv[1] = this.getPossibleValues(5, 6);
+				rv[1] = this.getPossibleValues(6, 6);
+			}
 
-		if (r == 3 && c == 2) {
-			rv[1] = this.getPossibleValues(4, 7);
-			rv[1] = this.getPossibleValues(5, 7);
-			rv[1] = this.getPossibleValues(6, 7);
-			rv[1] = this.getPossibleValues(4, 8);
-			rv[1] = this.getPossibleValues(5, 8);
-			rv[1] = this.getPossibleValues(6, 8);
-			rv[1] = this.getPossibleValues(4, 9);
-			rv[1] = this.getPossibleValues(5, 9);
-			rv[1] = this.getPossibleValues(6, 9);
-		}
+			if (r == 3 && c == 2) {
+				rv[1] = this.getPossibleValues(4, 7);
+				rv[1] = this.getPossibleValues(5, 7);
+				rv[1] = this.getPossibleValues(6, 7);
+				rv[1] = this.getPossibleValues(4, 8);
+				rv[1] = this.getPossibleValues(5, 8);
+				rv[1] = this.getPossibleValues(6, 8);
+				rv[1] = this.getPossibleValues(4, 9);
+				rv[1] = this.getPossibleValues(5, 9);
+				rv[1] = this.getPossibleValues(6, 9);
+			}
 
-		if (r == 1 && c == 3) {
-			rv[1] = this.getPossibleValues(7, 1);
-			rv[1] = this.getPossibleValues(8, 1);
-			rv[1] = this.getPossibleValues(9, 1);
-			rv[1] = this.getPossibleValues(7, 2);
-			rv[1] = this.getPossibleValues(8, 2);
-			rv[1] = this.getPossibleValues(9, 2);
-			rv[1] = this.getPossibleValues(7, 3);
-			rv[1] = this.getPossibleValues(8, 3);
-			rv[1] = this.getPossibleValues(9, 3);
-		}
+			if (r == 1 && c == 3) {
+				rv[1] = this.getPossibleValues(7, 1);
+				rv[1] = this.getPossibleValues(8, 1);
+				rv[1] = this.getPossibleValues(9, 1);
+				rv[1] = this.getPossibleValues(7, 2);
+				rv[1] = this.getPossibleValues(8, 2);
+				rv[1] = this.getPossibleValues(9, 2);
+				rv[1] = this.getPossibleValues(7, 3);
+				rv[1] = this.getPossibleValues(8, 3);
+				rv[1] = this.getPossibleValues(9, 3);
+			}
 
-		if (r == 2 && c == 3) {
-			rv[1] = this.getPossibleValues(7, 4);
-			rv[1] = this.getPossibleValues(8, 4);
-			rv[1] = this.getPossibleValues(9, 4);
-			rv[1] = this.getPossibleValues(7, 5);
-			rv[1] = this.getPossibleValues(8, 5);
-			rv[1] = this.getPossibleValues(9, 5);
-			rv[1] = this.getPossibleValues(7, 6);
-			rv[1] = this.getPossibleValues(8, 6);
-			rv[1] = this.getPossibleValues(9, 6);
-		}
+			if (r == 2 && c == 3) {
+				rv[1] = this.getPossibleValues(7, 4);
+				rv[1] = this.getPossibleValues(8, 4);
+				rv[1] = this.getPossibleValues(9, 4);
+				rv[1] = this.getPossibleValues(7, 5);
+				rv[1] = this.getPossibleValues(8, 5);
+				rv[1] = this.getPossibleValues(9, 5);
+				rv[1] = this.getPossibleValues(7, 6);
+				rv[1] = this.getPossibleValues(8, 6);
+				rv[1] = this.getPossibleValues(9, 6);
+			}
 
-		if (r == 3 && c == 3) {
-			rv[1] = this.getPossibleValues(7, 7);
-			rv[1] = this.getPossibleValues(8, 7);
-			rv[1] = this.getPossibleValues(9, 7);
-			rv[1] = this.getPossibleValues(7, 8);
-			rv[1] = this.getPossibleValues(8, 8);
-			rv[1] = this.getPossibleValues(9, 8);
-			rv[1] = this.getPossibleValues(7, 9);
-			rv[1] = this.getPossibleValues(8, 9);
-			rv[1] = this.getPossibleValues(9, 9);
+			if (r == 3 && c == 3) {
+				rv[1] = this.getPossibleValues(7, 7);
+				rv[1] = this.getPossibleValues(8, 7);
+				rv[1] = this.getPossibleValues(9, 7);
+				rv[1] = this.getPossibleValues(7, 8);
+				rv[1] = this.getPossibleValues(8, 8);
+				rv[1] = this.getPossibleValues(9, 8);
+				rv[1] = this.getPossibleValues(7, 9);
+				rv[1] = this.getPossibleValues(8, 9);
+				rv[1] = this.getPossibleValues(9, 9);
+			}
+			System.out.println("Returning " + Arrays.toString(rv)
+					+ " As Square " + r + ", " + c);
 		}
-		System.out.println("Returning " + Arrays.toString(rv) + " As Square "
-				+ r + ", " + c);
-
 		return rv;
 	}
 
