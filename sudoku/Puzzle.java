@@ -22,6 +22,13 @@ public class Puzzle {
 		return values;
 	}
 
+	public void setValue(int column, int row, int value) {
+		int a = getPosition(column, row);
+		values[a] = value;
+		System.out.println("Setting " + value + " For The Cell At " + column
+				+ ", " + row);
+	}
+
 	/**
 	 * returns the value at the specified location in the puzzle, where the
 	 * first row is 1 and the first column is 1
@@ -31,14 +38,14 @@ public class Puzzle {
 	 * @return
 	 */
 	public int getValue(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Returning Value " + a + " To A Request For Column "
 				+ column + " And Row " + row);
 		return values[a];
 	}
 
 	public boolean[] getPossibleValues(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Returning Value "
 				+ Arrays.toString(possibleValues[a])
 				+ " To A Request For Possible Values For Column " + column
@@ -47,7 +54,7 @@ public class Puzzle {
 	}
 
 	public void setPossibleValues(int column, int row, boolean[] posVals) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting Possible Values To "
 				+ Arrays.toString(posVals) + " For Column " + column
 				+ " And Row " + row);
@@ -55,126 +62,126 @@ public class Puzzle {
 	}
 
 	public void setPossibleValue1(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 1 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][1] = true;
 	}
 
 	public void setPossibleValue2(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 1=2 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][2] = true;
 	}
 
 	public void setPossibleValue3(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 3 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][3] = true;
 	}
 
 	public void setPossibleValue4(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 4 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][4] = true;
 	}
 
 	public void setPossibleValue5(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 5 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][5] = true;
 	}
 
 	public void setPossibleValue6(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 6 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][6] = true;
 	}
 
 	public void setPossibleValue7(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 7 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][7] = true;
 	}
 
 	public void setPossibleValue8(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 8 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][8] = true;
 	}
 
 	public void setPossibleValue9(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 9 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][9] = true;
 	}
 
 	public void setNotPossible1(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 1 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][1] = false;
 	}
 
 	public void setNotPossible2(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 2 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][2] = false;
 	}
 
 	public void setNotPossible3(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 3 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][3] = false;
 	}
 
 	public void setNotPossible4(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 4 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][4] = false;
 	}
 
 	public void setNotPossible5(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 5 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][5] = false;
 	}
 
 	public void setNotPossible6(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 6 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][6] = false;
 	}
 
 	public void setNotPossible7(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 7 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][7] = false;
 	}
 
 	public void setNotPossible8(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 8 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][8] = false;
 	}
 
 	public void setNotPossible9(int column, int row) {
-		int a = (((row - 1) * 9) + column) - 1;
+		int a = getPosition(column, row);
 		System.out.println("Setting 9 As A Possible Value To For Column "
 				+ column + " And Row " + row);
 		possibleValues[a][9] = false;
@@ -213,15 +220,15 @@ public class Puzzle {
 
 	public boolean[][] getRowPVals(int r) {
 		boolean[][] rv = new boolean[9][9];
-		rv[0] = this.getPossibleValues(1, r);
-		rv[1] = this.getPossibleValues(2, r);
-		rv[2] = this.getPossibleValues(3, r);
-		rv[3] = this.getPossibleValues(4, r);
-		rv[4] = this.getPossibleValues(5, r);
-		rv[5] = this.getPossibleValues(6, r);
-		rv[6] = this.getPossibleValues(7, r);
-		rv[7] = this.getPossibleValues(8, r);
-		rv[8] = this.getPossibleValues(9, r);
+		rv[0] = this.getPossibleValues(0, r);
+		rv[1] = this.getPossibleValues(1, r);
+		rv[2] = this.getPossibleValues(2, r);
+		rv[3] = this.getPossibleValues(3, r);
+		rv[4] = this.getPossibleValues(4, r);
+		rv[5] = this.getPossibleValues(5, r);
+		rv[6] = this.getPossibleValues(6, r);
+		rv[7] = this.getPossibleValues(7, r);
+		rv[8] = this.getPossibleValues(8, r);
 		System.out.println("Returning " + Arrays.toString(rv) + " As Row " + r);
 		return rv;
 	}
@@ -626,5 +633,10 @@ public class Puzzle {
 			Sudoku.UIMgr.SetText("Updating Column " + column + "...");
 		}
 
+	}
+
+	public int getPosition(int column, int row) {
+		int rv = (((row) * 9) + column);
+		return rv;
 	}
 }

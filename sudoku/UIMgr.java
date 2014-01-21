@@ -34,13 +34,12 @@ public class UIMgr {
 	protected static Dimension dim = Toolkit.getDefaultToolkit()
 			.getScreenSize();
 
-	public void Start(int needed) throws ClassNotFoundException,
-			InstantiationException, IllegalAccessException,
-			UnsupportedLookAndFeelException {
+	public void Start() throws ClassNotFoundException, InstantiationException,
+			IllegalAccessException, UnsupportedLookAndFeelException {
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		frame = new JFrame("Sudoku Solver");
+		frame = new JFrame("The Sudoku Solver");
 		cpane = new JPanel(new BorderLayout());
-		pbar = new JProgressBar(0, needed);
+		pbar = new JProgressBar(0, 1);
 		label = new JLabel();
 		mpane = new JPanel(new BorderLayout());
 		npane = new JPanel(new BorderLayout());
@@ -76,8 +75,6 @@ public class UIMgr {
 		cancelButton.setToolTipText("Cancels The Program");
 		pbar.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		pbar.setIndeterminate(true);
-		pbar.setToolTipText(value + " Out Of " + needed + ", "
-				+ ((float) value / (float) needed) + "%");
 		frame.setVisible(true);
 	}
 
@@ -91,9 +88,17 @@ public class UIMgr {
 		this.value = v;
 	}
 
+	public void StartBar(int needed, int val) {
+		pbar.setToolTipText(value + " Out Of " + needed + ", "
+				+ ((float) value / (float) needed) + "%");
+		pbar.setMaximum(needed);
+		pbar.setIndeterminate(false);
+	}
+
 	public class CancelButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			if ("cancel".equals(e.getActionCommand())) {
+				System.out.println("User Cancelled Program.\nExiting...");
 				System.exit(1);
 			} else {
 				// ...

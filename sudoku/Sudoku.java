@@ -1,6 +1,10 @@
 package sudoku;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -8,27 +12,26 @@ public class Sudoku {
 
 	public static final String USAGE_STATMENT = "Usage: java sudoku.Sudoku path/to/sudoku/file";
 	public static UIMgr UIMgr = new UIMgr();
+	public static int[] infile = new int[81];
+	protected static Puzzle puzzle = new Puzzle();
+	public static final Pattern COMMA_PATTERN = Pattern.compile("\\s*,*\\s*");
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException,
+			InterruptedException {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome to the Sudoku Puzzle Solving Program");
 		int needed = 10;
 		// Check if user has submitted arguments
-		/*
-		 * if (args.length == 0) {
-		 * System.err.println("E: Not enough arguments");
-		 * System.err.println(Sudoku.USAGE_STATMENT); System.exit(1); }
-		 * 
-		 * 
-		 * // A buffered reader to read the size of the file File file = new
-		 * File(args[0]); BufferedReader reader = new BufferedReader(new
-		 * FileReader(file)); int count = 0; while (reader.read() != -1) {
-		 * count++; } // trashes the BufferedReader for garbage collection
-		 * reader = null; // File Loader not implemented now // Scanner scan =
-		 * new Scanner(new FileInputStream(file));
-		 */
+
+		if (args.length == 0) {
+			System.err.println("E: Not enough arguments");
+			System.err.println(Sudoku.USAGE_STATMENT);
+			System.exit(1);
+		}
+
+		// Starts the UI view
 		try {
-			UIMgr.Start(needed);
+			UIMgr.Start();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,21 +45,39 @@ public class Sudoku {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		int[] b = new int[81];
-		b[1] = 1;
-		b[0] = 0;
-		b[2] = 2;
-		Puzzle puzzle = new Puzzle(b);
-		Sudoku.SolvePuzzle(puzzle);
-	}
 
-	public static Puzzle SolvePuzzle(Puzzle p) {
+		// Sleep Thread to allow UI time to load
+		Thread.sleep(750);
+
+		File file = new File(args[0]);
+		Scanner scan = new Scanner(new FileInputStream(file));
+		scan.useDelimiter(COMMA_PATTERN);
+
+		for (int f = 0; f < infile.length; f++) {
+			int r;
+			r = scan.nextInt();
+			if (r == 0) {
+				needed++;
+			}
+			// Sleep to allow UI time to display text
+			Thread.sleep(5);
+			infile[f] = r;
+			System.out.println("Reading " + r);
+			UIMgr.SetText("Reading " + r);
+		}
+		System.out.println("Done Reading File");
+		UIMgr.SetText("Done Reading File");
+		UIMgr.StartBar(needed, 0);
 		int c = 1;
 		int r = 1;
-		for (int a = 0; a < 9; a++) {
-			for (int b = 0; b < 9; b++) {
-			}
+		for (int f = 0; f < infile.length; f++) {
+			r = f / 9;
+			c = f % 9;
+			puzzle.setValue(c, r, infile[f]);
+			puzzle.update(c, r, infile[f]);
+			System.out.println("Adding " + infile[f] + " To The Puzzle At " + c
+					+ ", " + r);
 		}
-		return p;
+
 	}
 }
