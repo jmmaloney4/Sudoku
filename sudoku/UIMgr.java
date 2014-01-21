@@ -92,7 +92,6 @@ public class UIMgr {
 		pbar.setToolTipText(value + " Out Of " + needed + ", "
 				+ ((float) value / (float) needed) + "%");
 		pbar.setMaximum(needed);
-		pbar.setIndeterminate(false);
 	}
 
 	public class CancelButtonListener implements ActionListener {

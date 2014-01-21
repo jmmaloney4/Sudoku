@@ -6,11 +6,25 @@ public class Puzzle {
 
 	protected int[] values;
 	protected boolean[][] possibleValues = new boolean[81][9];
+	protected int[] possibleCount = new int[81];
 
 	public Puzzle() {
 		values = new int[81];
 		for (int a = 0; a < values.length; a++) {
 			values[a] = 0;
+		}
+
+		for (int a = 0; a < possibleValues.length; a++) {
+			possibleValues[a][0] = true;
+			possibleValues[a][1] = true;
+			possibleValues[a][2] = true;
+			possibleValues[a][3] = true;
+			possibleValues[a][4] = true;
+			possibleValues[a][5] = true;
+			possibleValues[a][6] = true;
+			possibleValues[a][7] = true;
+			possibleValues[a][8] = true;
+			possibleCount[a] = 9;
 		}
 	}
 
@@ -621,12 +635,24 @@ public class Puzzle {
 		}
 
 		for (int d = 0; d < r.length; d++) {
+			if (r[d][update] == true) {
+				possibleCount[d] = possibleCount[d] - 1;
+				System.out
+						.println("Subtracting one from the possible count, to remove "
+								+ update);
+			}
 			r[d][update] = false;
-			System.out.println("Updating Row" + row + "...");
+			System.out.println("Updating Row " + row + "...");
 			Sudoku.UIMgr.SetText("Updating Row " + row + "...");
 		}
 
 		for (int d = 0; d < c.length; d++) {
+			if (c[d][update] == true) {
+				possibleCount[d] = possibleCount[d] - 1;
+				System.out
+						.println("Subtracting one from the possible count, to remove "
+								+ update);
+			}
 			c[d][update] = false;
 			System.out.println("Updating Column " + column + "...");
 			Sudoku.UIMgr.SetText("Updating Column " + column + "...");
@@ -637,5 +663,9 @@ public class Puzzle {
 	public int getPosition(int column, int row) {
 		int rv = (((row) * 9) + column);
 		return rv;
+	}
+
+	public int[] getPosCount() {
+		return this.possibleCount;
 	}
 }

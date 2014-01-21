@@ -82,11 +82,39 @@ public class Sudoku {
 		for (int f = 0; f < infile.length; f++) {
 			r = f / 9;
 			c = f % 9;
-			puzzle.setValue(c, r, infile[f]);
-			puzzle.update(c, r, infile[f]);
+			if (infile[f] != 0) {
+				puzzle.setValue(c, r, infile[f]);
+				puzzle.update(c, r, infile[f] - 1);
+			}
 			System.out.println("Adding " + infile[f] + " To The Puzzle At " + c
 					+ ", " + r);
 		}
 
+		for (int a = 0; a < infile.length; a++) {
+			r = a / 9;
+			c = a % 9;
+			System.out.println("Searching For 1 Possible Value at Cell Row: "
+					+ r + " Column: " + c);
+			System.out.println("Count For Row: " + r + " Column: " + c + " Is "
+					+ puzzle.getPosCount()[a]);
+			if (puzzle.getPosCount()[a] == 1) {
+				System.out
+						.println("Found A Cell With Only 1 Possible Value at Row: "
+								+ r + " Column: " + c);
+				UIMgr.SetText("Found A Cell With Only 1 Possible Value at Row: "
+						+ r + " Column: " + c);
+				for (int b = 0; b < puzzle.getPossibleValues(c, r).length; b++) {
+					if (puzzle.getPossibleValues(c, r)[b] == true) {
+						puzzle.values[a] = b + 1;
+						System.out.println("Setting Row: " + r + " Column: "
+								+ c + " To " + (b + 1));
+						UIMgr.SetText("Setting Row: " + r + " Column: " + c
+								+ " To " + (b + 1));
+					}
+				}
+			}
+		}
+		System.out.println("Done.");
+		UIMgr.SetText("Done Solving.");
 	}
 }
