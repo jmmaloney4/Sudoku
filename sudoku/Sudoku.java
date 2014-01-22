@@ -17,8 +17,6 @@ public class Sudoku {
 	public static final Pattern COMMA_PATTERN = Pattern.compile("\\s*,*\\s*");
 
 	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
-
 		// Starts the UI view
 		try {
 			UIMgr.Start();
@@ -37,7 +35,7 @@ public class Sudoku {
 		}
 
 		System.out.println("Welcome to the Sudoku Puzzle Solving Program");
-		int needed = 10;
+		int needed = 0;
 		// Check if user has submitted arguments
 
 		if (args.length == 0) {
@@ -66,8 +64,12 @@ public class Sudoku {
 			int r;
 			r = scan.nextInt();
 			if (r == 0) {
+				r = 9;
 				needed++;
+			} else {
+				r = r - 1;
 			}
+
 			// Sleep to allow UI time to display text
 			Thread.sleep(5);
 			infile[f] = r;
@@ -77,44 +79,9 @@ public class Sudoku {
 		System.out.println("Done Reading File");
 		UIMgr.SetText("Done Reading File");
 		UIMgr.StartBar(needed, 0);
-		int c = 1;
-		int r = 1;
-		for (int f = 0; f < infile.length; f++) {
-			r = f / 9;
-			c = f % 9;
-			if (infile[f] != 0) {
-				puzzle.setValue(c, r, infile[f]);
-				puzzle.update(c, r, infile[f] - 1);
-			}
-			System.out.println("Adding " + infile[f] + " To The Puzzle At " + c
-					+ ", " + r);
-		}
 
-		for (int a = 0; a < infile.length; a++) {
-			r = a / 9;
-			c = a % 9;
-			System.out.println("Searching For 1 Possible Value at Cell Row: "
-					+ r + " Column: " + c);
-			System.out.println("Count For Row: " + r + " Column: " + c + " Is "
-					+ puzzle.getPosCount()[a]);
-			if (puzzle.getPosCount()[a] == 1) {
-				System.out
-						.println("Found A Cell With Only 1 Possible Value at Row: "
-								+ r + " Column: " + c);
-				UIMgr.SetText("Found A Cell With Only 1 Possible Value at Row: "
-						+ r + " Column: " + c);
-				for (int b = 0; b < puzzle.getPossibleValues(c, r).length; b++) {
-					if (puzzle.getPossibleValues(c, r)[b] == true) {
-						puzzle.values[a] = b + 1;
-						System.out.println("Setting Row: " + r + " Column: "
-								+ c + " To " + (b + 1));
-						UIMgr.SetText("Setting Row: " + r + " Column: " + c
-								+ " To " + (b + 1));
-					}
-				}
-			}
-		}
 		System.out.println("Done.");
-		UIMgr.SetText("Done Solving.");
+		UIMgr.SetText("Done");
+		UIMgr.EnableExit();
 	}
 }
