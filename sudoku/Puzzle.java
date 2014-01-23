@@ -50,14 +50,19 @@ public class Puzzle {
 
 	public int[] getSquareValues(int row, int column) {
 		int[] rv = new int[9];
+		int[] sqvals = this.getSquareNums(row, column);
+
+		for (int a = 0; a < rv.length; a++) {
+			rv[a] = this.values[sqvals[a]];
+		}
 
 		return rv;
 	}
 
 	public void update(int row, int column, int update) {
-		System.out.println("Updating Puzzle Because We Added " + update
-				+ " At " + row + ", " + column + "...");
-		Sudoku.UIMgr.SetText("Updating Puzzle Because We Added " + update
+		System.out.println("Updating Puzzle Because I Added " + update + " At "
+				+ row + ", " + column + "...");
+		Sudoku.UIMgr.SetText("Updating Puzzle Because I Added " + update
 				+ " At " + row + ", " + column + "...");
 
 	}
@@ -96,5 +101,49 @@ public class Puzzle {
 		System.out.println("Returning " + sqnum + " As The Square Number For "
 				+ row + ", " + column);
 		return sqnum;
+	}
+
+	protected int[] getSquareNums(int row, int column) {
+		int[] rv = new int[] { 0, 1, 2, 9, 10, 11, 18, 19, 20 };
+		int sqnum = this.getSquare(row, column);
+		switch (sqnum) {
+		case 0:
+			for (int a = 0; a < rv.length; a++) {
+				rv[a] = rv[a] + 0;
+			}
+		case 1:
+			for (int a = 0; a < rv.length; a++) {
+				rv[a] = rv[a] + 3;
+			}
+		case 2:
+			for (int a = 0; a < rv.length; a++) {
+				rv[a] = rv[a] + 6;
+			}
+		case 3:
+			for (int a = 0; a < rv.length; a++) {
+				rv[a] = rv[a] + 27;
+			}
+		case 4:
+			for (int a = 0; a < rv.length; a++) {
+				rv[a] = rv[a] + 30;
+			}
+		case 5:
+			for (int a = 0; a < rv.length; a++) {
+				rv[a] = rv[a] + 33;
+			}
+		case 6:
+			for (int a = 0; a < rv.length; a++) {
+				rv[a] = rv[a] + 54;
+			}
+		case 7:
+			for (int a = 0; a < rv.length; a++) {
+				rv[a] = rv[a] + 57;
+			}
+		case 8:
+			for (int a = 0; a < rv.length; a++) {
+				rv[a] = rv[a] + 60;
+			}
+		}
+		return rv;
 	}
 }
