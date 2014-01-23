@@ -80,6 +80,15 @@ public class Sudoku {
 		UIMgr.SetText("Done Reading File");
 		UIMgr.StartBar(needed, 0);
 
+		for (int a = 0; a < puzzle.values.length; a++) {
+			puzzle.setValue(puzzle.getRow(a), puzzle.getColumn(a), infile[a]);
+			System.out.println("Adding " + infile[a] + " To The Puzzle At "
+					+ puzzle.getRow(a) + ", " + puzzle.getColumn(a));
+			Sudoku.UIMgr.SetText("Adding " + infile[a] + " To The Puzzle At "
+					+ puzzle.getRow(a) + ", " + puzzle.getColumn(a));
+			puzzle.update(puzzle.getRow(a), puzzle.getColumn(a), infile[a]);
+		}
+
 		System.out.println("Done.");
 		UIMgr.SetText("Done");
 		UIMgr.EnableExit();

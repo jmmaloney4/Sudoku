@@ -1,5 +1,7 @@
 package sudoku;
 
+import java.util.Arrays;
+
 public class Puzzle {
 
 	protected int[] values;
@@ -29,8 +31,10 @@ public class Puzzle {
 	public void setValue(int row, int column, int value) {
 		int a = getPosition(column, row);
 		values[a] = value;
-		System.out.println("Setting " + value + " For The Cell At " + column
-				+ ", " + row);
+		System.out.println("Setting " + value + " For The Cell At " + row
+				+ ", " + column);
+		Sudoku.UIMgr.SetText("Setting " + value + " For The Cell At " + row
+				+ ", " + column);
 	}
 
 	/**
@@ -59,12 +63,43 @@ public class Puzzle {
 		return rv;
 	}
 
-	public void update(int row, int column, int update) {
-		System.out.println("Updating Puzzle Because I Added " + update + " At "
-				+ row + ", " + column + "...");
-		Sudoku.UIMgr.SetText("Updating Puzzle Because I Added " + update
-				+ " At " + row + ", " + column + "...");
+	public boolean[][] getSquarePValues(int row, int column) {
+		boolean[][] rv = new boolean[9][9];
+		int[] sqvals = this.getSquareNums(row, column);
 
+		for (int a = 0; a < rv.length; a++) {
+			rv[a] = this.possibleValues[sqvals[a]];
+		}
+
+		return rv;
+	}
+
+	public void update(int row, int column, int update) {
+		System.out.println("Updating Puzzle Because " + update
+				+ " Was Added To The Puzzle At " + row + ", " + column + "...");
+		Sudoku.UIMgr.SetText("Updating Puzzle Because " + update
+				+ " Was Added To The Puzzle At " + row + ", " + column + "...");
+		if (update != 9) {
+			for (int a = 0; a < this.possibleValues.length; a++) {
+				if (this.possibleValues[a][update] = true) {
+					this.possibleCount[a]--;
+					System.out
+							.println("Subtracting one from the possible count for "
+									+ row
+									+ ", "
+									+ column
+									+ " to remove the possibility of " + update);
+				}
+				System.out.println("Removing A Possible Value Of " + update
+						+ " For " + row + ", " + column);
+				this.possibleValues[a][update] = false;
+			}
+		} else {
+			System.out
+					.println("Update was not completed, as the value was 0 and the puzzle does not need to be updated");
+			Sudoku.UIMgr
+					.SetText("Update was not completed, as the value was 0 and the puzzle does not need to be updated");
+		}
 	}
 
 	public int getPosition(int row, int column) {
@@ -144,6 +179,20 @@ public class Puzzle {
 				rv[a] = rv[a] + 60;
 			}
 		}
+		System.out.println("Returning " + Arrays.toString(rv)
+				+ " As the Array Digits For Square "
+				+ this.getSquare(row, column));
 		return rv;
 	}
+
+	public int getColumn(int position) {
+		int rv = position % 9;
+		return rv;
+	}
+
+	public int getRow(int position) {
+		int rv = position / 9;
+		return rv;
+	}
+
 }

@@ -25,10 +25,8 @@ public class UIMgr {
 	protected JPanel mpane;
 	protected JPanel npane;
 	protected JPanel spane;
-	protected JPanel swpane;
 	protected JLabel label;
 	protected JButton cancelButton;
-	protected JButton ExitButton;
 	public int value = 0;
 
 	private ActionListener cButtonListener = new CancelButtonListener();
@@ -66,18 +64,9 @@ public class UIMgr {
 		npane.add(Box.createVerticalStrut(10), BorderLayout.NORTH);
 		label.setFont(new Font("Arial", Font.ITALIC, 24));
 		label.setText("Loading...");
-		ExitButton = new JButton("Exit");
-		ExitButton.setActionCommand("exit");
-		ExitButton.setFont(new Font("Arial", Font.BOLD, 16));
-		ExitButton.setEnabled(false);
-		ExitButton.addActionListener(this.cButtonListener);
 		cpane.add(spane, BorderLayout.SOUTH);
 		spane.add(cancelButton, BorderLayout.CENTER);
-		swpane = new JPanel(new BorderLayout());
-		spane.add(swpane, BorderLayout.WEST);
-		swpane.add(Box.createHorizontalStrut(570), BorderLayout.EAST);
-		swpane.add(Box.createHorizontalStrut(35), BorderLayout.WEST);
-		swpane.add(ExitButton, BorderLayout.CENTER);
+		spane.add(Box.createHorizontalStrut(620), BorderLayout.WEST);
 		spane.add(Box.createVerticalStrut(15), BorderLayout.SOUTH);
 		spane.add(Box.createHorizontalStrut(35), BorderLayout.EAST);
 		spane.add(Box.createVerticalStrut(15), BorderLayout.SOUTH);
@@ -107,8 +96,9 @@ public class UIMgr {
 	}
 
 	public void EnableExit() {
-		this.ExitButton.setEnabled(true);
-		this.cancelButton.setEnabled(false);
+		this.cancelButton.setActionCommand("exit");
+		this.cancelButton.setText("Exit");
+		this.cancelButton.setToolTipText("Exits The Program");
 	}
 
 	public class CancelButtonListener implements ActionListener {
