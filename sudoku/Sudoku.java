@@ -55,7 +55,7 @@ public class Sudoku {
 		}
 
 		// Sleep Thread to allow UI time to load
-		Thread.sleep(750);
+		Thread.sleep(350);
 
 		File file = new File(args[0]);
 		Scanner scan;
@@ -100,5 +100,15 @@ public class Sudoku {
 		System.out.println("Done.");
 		UIMgr.SetText("Done");
 		UIMgr.EnableExit();
+		Thread.sleep(500);
+		UIMgr.pbar.setMaximum(3);
+		UIMgr.SetValue(3);
+		UIMgr.SetText("Exiting");
+		for (int a = 3; a > -1; a--) {
+			UIMgr.SetValue(a);
+			UIMgr.SetText("Exiting in " + a + "...");
+			Thread.sleep(850);
+		}
+		System.exit(1);
 	}
 }
