@@ -42,7 +42,11 @@ public class Sudoku {
 			System.err.println("E: Not enough arguments");
 			System.err.println(Sudoku.USAGE_STATMENT);
 			UIMgr.SetText("There Were No Arguments To The Program, Exiting...");
-			Thread.sleep(7000);
+			Thread.sleep(1000);
+			for (int a = 3; a > -2; a--) {
+				Thread.sleep(1000);
+				UIMgr.SetText(a + "...");
+			}
 			System.exit(1);
 		}
 
