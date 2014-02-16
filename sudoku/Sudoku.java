@@ -42,8 +42,8 @@ public class Sudoku {
 			System.err.println("E: Not enough arguments");
 			System.err.println(Sudoku.USAGE_STATMENT);
 			UIMgr.SetText("There Were No Arguments To The Program, Exiting...");
-			Thread.sleep(7000);
-			System.exit(1);
+			Thread.sleep(2000);
+			UIMgr.AutoExit(3, 1);
 		}
 
 		// Sleep Thread to allow UI time to load
@@ -91,6 +91,6 @@ public class Sudoku {
 
 		System.out.println("Done.");
 		UIMgr.SetText("Done");
-		UIMgr.EnableExit();
+		UIMgr.AutoExit(3);
 	}
 }

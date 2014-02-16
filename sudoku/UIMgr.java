@@ -100,6 +100,22 @@ public class UIMgr {
 		this.cancelButton.setText("Exit");
 		this.cancelButton.setToolTipText("Exits The Program");
 	}
+	
+	public void AutoExit(int sec, int status) throws InterruptedException {
+		this.EnableExit();
+		this.pbar.setIndeterminate(false);
+		this.pbar.setMaximum(sec);
+		for (int a = sec; a > -1; a--) {
+			this.SetText("Exiting in " + a + "...");
+			this.pbar.setValue(a);
+			Thread.sleep(1000);
+		}
+		System.exit(status);
+	}
+	
+	public void AutoExit(int sec) throws InterruptedException {
+		this.AutoExit(sec, 0);
+	}
 
 	public class CancelButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
