@@ -41,13 +41,14 @@ public class Sudoku {
 		if (args.length == 0) {
 			System.err.println("E: Not enough arguments");
 			System.err.println(Sudoku.USAGE_STATMENT);
+			UIMgr.EnableExit();
 			UIMgr.SetText("There Were No Arguments To The Program, Exiting...");
 			Thread.sleep(2000);
 			UIMgr.AutoExit(3, 1);
 		}
 
 		// Sleep Thread to allow UI time to load
-		Thread.sleep(750);
+		Thread.sleep(350);
 
 		File file = new File(args[0]);
 		Scanner scan;
