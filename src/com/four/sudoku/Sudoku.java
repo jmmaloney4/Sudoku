@@ -37,5 +37,8 @@ public class Sudoku {
 		
 		scanner = new Scanner(new File(args[0]));
 		
+		for(int i = 0; scanner.hasNextInt(); i++) {
+			Sudoku.puzzle.actual[i] = scanner.nextInt();
+		}
 	}
 }
