@@ -3,14 +3,18 @@ package com.four.sudoku;
 public class Puzzle {
 
 	protected int[] actual = new int[81];
-	protected boolean[][] possable = new boolean[81][9];
+	protected boolean[][] poss = new boolean[81][9];
 	
 	public Puzzle() {
-		System.out.println(possable.length);
-		System.out.println(possable[0].length);
+		for (int a = 0; a < poss.length; a++) {
+			for (int b = 0; b < poss[a].length; b++) {
+				poss[a][b] = true;
+			}
+		}
 	}
 	
 	public int getArrayPosFor(int row, int col) {
-		a = col * 9
+		int a = col * 9 + row;
+		return a;
 	}
 }
