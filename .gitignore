@@ -1,2 +1,4 @@
 #ignore ubuntu backup files
 ~*
+bin/
+.class
