@@ -36,8 +36,8 @@ public class Sudoku {
 
 		System.out.println("Welcome to the Sudoku Puzzle Solving Program");
 		int needed = 0;
+        
 		// Check if user has submitted arguments
-
 		if (args.length == 0) {
 			System.err.println("E: Not enough arguments");
 			System.err.println(Sudoku.USAGE_STATMENT);
