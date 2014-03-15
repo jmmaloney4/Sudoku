@@ -60,19 +60,27 @@ public class Sudoku {
 				needed++;
 			}
 			UI.SetValue(f);
-			Thread.sleep(5);
 			readfile[f] = r;
 			UI.SetText("Reading " + r);
 		}
 
-		UI.pbar.setMaximum(needed);
+		UI.pbar.setMaximum(readfile.length);
 		UI.pbar.setIndeterminate(true);
 		UI.pbar.setValue(0);
 		UI.SetText("Done Reading File");
 		UI.SetText("Loading Values Into Puzzle Object...");
+		UI.pbar.setIndeterminate(false);
 
+		for (int d = 0; d < readfile.length; d++) {
+			UI.SetText("Loading " + readfile[d]);
+			UI.SetValue(d);
+			puzzle.setValue(d, readfile[d]);
+		}
 		System.out.println(Arrays.toString(readfile));
+		puzzle.debug_printArray();
 
+		puzzle.Solve();
+
+		UI.AutoExit(3);
 	}
-
 }
