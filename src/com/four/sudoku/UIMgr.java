@@ -81,6 +81,18 @@ public class UIMgr {
 
 	public void SetText(String x) {
 		label.setText(x);
+		System.out.println("[UI Update]: " + x);
+	}
+
+	public void error(String x) {
+		label.setText("Error: " + x);
+		System.err.println("ERROR: " + x);
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void SetValue(int v) {
@@ -89,10 +101,10 @@ public class UIMgr {
 		this.value = v;
 	}
 
-	public void StartBar(int needed, int val) {
-		pbar.setToolTipText(value + " Out Of " + needed + ", "
-				+ ((float) value / (float) needed) + "%");
-		pbar.setMaximum(needed);
+	public void StartBar(int max, int val) {
+		pbar.setToolTipText(value + " Out Of " + max + ", "
+				+ ((float) value / (float) max) + "%");
+		pbar.setMaximum(max);
 	}
 
 	public void EnableExit() {
@@ -100,7 +112,7 @@ public class UIMgr {
 		this.cancelButton.setText("Exit");
 		this.cancelButton.setToolTipText("Exits The Program");
 	}
-	
+
 	public void AutoExit(int sec, int status) throws InterruptedException {
 		this.EnableExit();
 		this.pbar.setIndeterminate(false);
@@ -112,7 +124,7 @@ public class UIMgr {
 		}
 		System.exit(status);
 	}
-	
+
 	public void AutoExit(int sec) throws InterruptedException {
 		this.AutoExit(sec, 0);
 	}
