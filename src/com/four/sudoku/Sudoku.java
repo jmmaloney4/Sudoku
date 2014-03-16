@@ -3,7 +3,6 @@ package com.four.sudoku;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -75,12 +74,8 @@ public class Sudoku {
 		for (int d = 0; d < readfile.length; d++) {
 			UI.SetText("Loading " + readfile[d]);
 			UI.SetValue(d);
-			puzzle.setValue(new Cell(Sudoku.puzzle, d, readfile[d]));
+			puzzle.setValue();
 		}
-		System.out.println(Arrays.toString(readfile));
-		puzzle.debug_printArray();
-
-		puzzle.Solve();
 
 		UI.AutoExit(3);
 	}
