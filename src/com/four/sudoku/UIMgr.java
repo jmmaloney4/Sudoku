@@ -95,6 +95,12 @@ public class UIMgr {
 		}
 	}
 
+	public void found(int x, int pos) {
+		String s = "Found " + x + " at " + pos;
+		label.setText(s);
+		System.out.println("[FOUND]: " + s);
+	}
+
 	public void SetValue(int v) {
 		pbar.setIndeterminate(false);
 		pbar.setValue(v);

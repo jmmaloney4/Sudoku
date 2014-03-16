@@ -62,6 +62,7 @@ public class Sudoku {
 			UI.SetValue(f);
 			readfile[f] = r;
 			UI.SetText("Reading " + r);
+
 		}
 
 		UI.pbar.setMaximum(readfile.length);
@@ -74,7 +75,7 @@ public class Sudoku {
 		for (int d = 0; d < readfile.length; d++) {
 			UI.SetText("Loading " + readfile[d]);
 			UI.SetValue(d);
-			puzzle.setValue(d, readfile[d]);
+			puzzle.setValue(new Cell(Sudoku.puzzle, d, readfile[d]));
 		}
 		System.out.println(Arrays.toString(readfile));
 		puzzle.debug_printArray();
