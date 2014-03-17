@@ -1,4 +1,4 @@
-package sudoku;
+package com.four.sudoku;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;
@@ -76,11 +76,30 @@ public class UIMgr {
 		cancelButton.setToolTipText("Cancels The Program");
 		pbar.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		pbar.setIndeterminate(true);
+		cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		frame.setVisible(true);
 	}
 
 	public void SetText(String x) {
 		label.setText(x);
+		System.out.println("[UI Update]: " + x);
+	}
+
+	public void error(String x) {
+		label.setText("Error: " + x);
+		System.err.println("ERROR: " + x);
+		try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void found(int x, int pos) {
+		String s = "Found " + x + " at " + pos;
+		label.setText(s);
+		System.out.println("[FOUND]: " + s);
 	}
 
 	public void SetValue(int v) {
@@ -89,10 +108,10 @@ public class UIMgr {
 		this.value = v;
 	}
 
-	public void StartBar(int needed, int val) {
-		pbar.setToolTipText(value + " Out Of " + needed + ", "
-				+ ((float) value / (float) needed) + "%");
-		pbar.setMaximum(needed);
+	public void StartBar(int max, int val) {
+		pbar.setToolTipText(value + " Out Of " + max + ", "
+				+ ((float) value / (float) max) + "%");
+		pbar.setMaximum(max);
 	}
 
 	public void EnableExit() {
@@ -100,21 +119,17 @@ public class UIMgr {
 		this.cancelButton.setText("Exit");
 		this.cancelButton.setToolTipText("Exits The Program");
 	}
-	
-	public void AutoExit(int sec, int status) throws InterruptedException {
+
+	public void AutoExit(int status) throws InterruptedException {
 		this.EnableExit();
-		this.pbar.setIndeterminate(false);
-		this.pbar.setMaximum(sec);
-		for (int a = sec; a > -1; a--) {
-			this.SetText("Exiting in " + a + "...");
-			this.pbar.setValue(a);
-			Thread.sleep(1000);
-		}
+		this.pbar.setIndeterminate(true);
+		this.SetText("Exiting...");
+		Thread.sleep(800);
 		System.exit(status);
 	}
-	
-	public void AutoExit(int sec) throws InterruptedException {
-		this.AutoExit(sec, 0);
+
+	public void AutoExit() throws InterruptedException {
+		this.AutoExit(0);
 	}
 
 	public class CancelButtonListener implements ActionListener {
@@ -124,7 +139,6 @@ public class UIMgr {
 				System.exit(1);
 			} else if ("exit".equals(e.getActionCommand())) {
 				System.out.println("Exiting...");
-				Sudoku.UIMgr.SetText("Exiting...");
 				System.exit(0);
 			}
 		}

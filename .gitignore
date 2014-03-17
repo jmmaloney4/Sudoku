@@ -1,4 +1,8 @@
 #ignore ubuntu backup files
 ~*
+<<<<<<< HEAD
 bin/
 .class
+=======
+bin/
+>>>>>>> dev
