@@ -41,8 +41,6 @@ public class Sudoku {
 			UI.AutoExit(3);
 		}
 
-		LCell.getConts(0);
-
 		File file = new File(args[0]);
 		FileInputStream fis = null;
 		try {
@@ -84,10 +82,10 @@ public class Sudoku {
 			puzzle.setValue(cell);
 		}
 
-		UI.AutoExit(3);
+		UI.AutoExit();
 	}
 
-	public static int[] getConts(int a) {
+	public static int[] getLCellValues(int a) {
 		int[] c0 = new int[9];
 		int[] c1 = new int[9];
 		int[] c2 = new int[9];
@@ -110,6 +108,7 @@ public class Sudoku {
 		int c6n = 0;
 		int c7n = 0;
 		int c8n = 0;
+
 		for (int b = 0; b < Sudoku.puzzle.getContents().length; b++) {
 			if (r == 9) {
 				c++;
@@ -188,5 +187,76 @@ public class Sudoku {
 		}
 
 		return rv;
+	}
+
+	public int[] getRowValues(int a) {
+		int[] rv = new int[9];
+		int k = 0;
+		switch (a) {
+		case 0:
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = c;
+			}
+			break;
+		case 1:
+			k = 0;
+			for (int c = 9; c < rv.length; c++) {
+				rv[k] = c;
+				k++;
+			}
+			break;
+		case 2:
+			k = 0;
+			for (int c = 18; c < rv.length; c++) {
+				rv[k] = c;
+				k++;
+			}
+			break;
+		case 3:
+			k = 0;
+			for (int c = 27; c < rv.length; c++) {
+				rv[k] = c;
+				k++;
+			}
+			break;
+		case 4:
+			k = 0;
+			for (int c = 36; c < rv.length; c++) {
+				rv[k] = c;
+				k++;
+			}
+			break;
+		case 5:
+			k = 0;
+			for (int c = 45; c < rv.length; c++) {
+				rv[k] = c;
+				k++;
+			}
+			break;
+		case 6:
+			k = 0;
+			for (int c = 54; c < rv.length; c++) {
+				rv[k] = c;
+				k++;
+			}
+			break;
+		case 7:
+			k = 63;
+			for (int c = 9; c < rv.length; c++) {
+				rv[k] = c;
+				k++;
+			}
+			break;
+		case 8:
+			k = 72;
+			for (int c = 9; c < rv.length; c++) {
+				rv[k] = c;
+				k++;
+			}
+			break;
+		}
+
+		return rv;
+
 	}
 }
