@@ -76,6 +76,7 @@ public class UIMgr {
 		cancelButton.setToolTipText("Cancels The Program");
 		pbar.setCursor(new Cursor(Cursor.WAIT_CURSOR));
 		pbar.setIndeterminate(true);
+		cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		frame.setVisible(true);
 	}
 
