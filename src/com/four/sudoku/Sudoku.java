@@ -3,7 +3,6 @@ package com.four.sudoku;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -19,6 +18,8 @@ public class Sudoku {
 
 	public static void main(String[] args) throws InterruptedException,
 			FileNotFoundException {
+
+		long start = System.currentTimeMillis();
 
 		try {
 			UI.Start();
@@ -77,12 +78,63 @@ public class Sudoku {
 			cell.setValue(readfile[d]);
 			cell.setPosition(d);
 			cell.setPuzzle(Sudoku.puzzle);
-			cell.setParent(Sudoku.puzzle.getLCells()[puzzle
-					.getLCellForArrayPos(d)]);
+
 			puzzle.setValue(cell);
 		}
+		long end = System.currentTimeMillis();
+		System.out.println("It took " + (end - start)
+				+ " Miliseconds to solve your sudoku problem");
 
 		UI.AutoExit();
+	}
+
+	public static int getLCellFor(int a) {
+		for (int x = 0; x < Sudoku.getLCellValues(0).length; x++) {
+			if (a == Sudoku.getLCellValues(0)[x]) {
+				return 0;
+			}
+		}
+		for (int x = 0; x < Sudoku.getLCellValues(1).length; x++) {
+			if (a == Sudoku.getLCellValues(1)[x]) {
+				return 1;
+			}
+		}
+		for (int x = 0; x < Sudoku.getLCellValues(2).length; x++) {
+			if (a == Sudoku.getLCellValues(2)[x]) {
+				return 2;
+			}
+		}
+		for (int x = 0; x < Sudoku.getLCellValues(3).length; x++) {
+			if (a == Sudoku.getLCellValues(3)[x]) {
+				return 3;
+			}
+		}
+		for (int x = 0; x < Sudoku.getLCellValues(4).length; x++) {
+			if (a == Sudoku.getLCellValues(4)[x]) {
+				return 4;
+			}
+		}
+		for (int x = 0; x < Sudoku.getLCellValues(5).length; x++) {
+			if (a == Sudoku.getLCellValues(5)[x]) {
+				return 5;
+			}
+		}
+		for (int x = 0; x < Sudoku.getLCellValues(6).length; x++) {
+			if (a == Sudoku.getLCellValues(6)[x]) {
+				return 6;
+			}
+		}
+		for (int x = 0; x < Sudoku.getLCellValues(7).length; x++) {
+			if (a == Sudoku.getLCellValues(7)[x]) {
+				return 7;
+			}
+		}
+		for (int x = 0; x < Sudoku.getLCellValues(8).length; x++) {
+			if (a == Sudoku.getLCellValues(8)[x]) {
+				return 8;
+			}
+		}
+		return -1;
 	}
 
 	public static int[] getLCellValues(int a) {
@@ -145,16 +197,6 @@ public class Sudoku {
 			}
 			r++;
 		}
-
-		System.out.println(Arrays.toString(c0));
-		System.out.println(Arrays.toString(c1));
-		System.out.println(Arrays.toString(c2));
-		System.out.println(Arrays.toString(c3));
-		System.out.println(Arrays.toString(c4));
-		System.out.println(Arrays.toString(c5));
-		System.out.println(Arrays.toString(c6));
-		System.out.println(Arrays.toString(c7));
-		System.out.println(Arrays.toString(c8));
 
 		switch (a) {
 		case 0:
