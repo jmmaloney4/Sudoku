@@ -1,74 +1,89 @@
 package com.four.sudoku;
 
 public class Cell {
-	int value = 0;
-	Cell[] row = new Cell[9];
-	Cell[] col = new Cell[9];
-	Cell[] cube = new Cell[9];
-	int[] cords = new int[2];
-	Puzzle parent;
-	int pos;
-	boolean ided = !(this.value == 0);
-	LCell[] bigrow = new LCell[3];
-	LCell[] bigcol = new LCell[3];
-	LCell lcell;
-	boolean[] poss = new boolean[9];
+	protected boolean[] poss = new boolean[9];
+	protected LCell parent;
+	protected Row row;
+	protected Column col;
+	protected Puzzle puzzle;
+	protected int value;
+	protected boolean solved;
+	protected int pos;
 
-	public Cell(Puzzle parent, int pos, int val) {
+	public Cell() {
+		this.pos = -1;
+	}
+
+	public LCell setParent(LCell parent) {
 		this.parent = parent;
-		this.pos = pos;
-		this.value = val;
+		return this.parent;
 	}
 
-	public boolean isUnidentified() {
-		return !ided;
+	public LCell getParent() {
+		return parent;
 	}
 
-	public int getRow() {
-		return this.cords[0];
+	public Puzzle setPuzzle(Puzzle puzzle) {
+		this.puzzle = puzzle;
+		return this.puzzle;
 	}
 
-	public int getCol() {
-		return this.cords[1];
-	}
-
-	public Cell setValue(int x) {
-		this.value = x;
-		return this;
-	}
-
-	public Puzzle setParent(Puzzle puzzle) {
-		this.parent = puzzle;
-		return puzzle;
-	}
-
-	public int getPos() {
-		return this.pos;
-	}
-
-	public int setPos(int x) {
-		this.pos = x;
-		return x;
-	}
-
-	public LCell[] getBigRow() {
-		return this.bigrow;
-	}
-
-	public LCell[] getBigCol() {
-		return this.bigcol;
-	}
-
-	public void update() {
-	}
-
-	public void setNotPossible(int num) {
-		this.poss[num] = false;
+	public Puzzle getPuzzle() {
+		return this.puzzle;
 	}
 
 	public void setAllNotPoss() {
 		for (int a = 0; a < this.poss.length; a++) {
 			this.poss[a] = false;
 		}
+	}
+
+	public void setNotPoss(int num) {
+		this.poss[num] = false;
+	}
+
+	public void setValue(int a) {
+		if (a == 0) {
+			this.setSolved();
+		}
+		this.value = a;
+	}
+
+	public int getValue() {
+		return this.value;
+	}
+
+	public int setSolved() {
+		this.setAllNotPoss();
+		this.solved = true;
+		return this.getValue();
+	}
+
+	public boolean isSolved() {
+		return this.solved;
+	}
+
+	public void setPosition(int x) {
+		this.pos = x;
+	}
+
+	public int getPosition() {
+		return this.pos;
+	}
+
+	public Row getRow() {
+		return row;
+	}
+
+	public void setRow(Row row) {
+		this.row = row;
+	}
+
+	public Column getCol() {
+		return col;
+	}
+
+	public void setCol(Column col) {
+		this.col = col;
 	}
 }
