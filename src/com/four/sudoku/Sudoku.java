@@ -85,6 +85,8 @@ public class Sudoku {
 			System.out.println(cell.getPosition());
 			cell.setRow(Sudoku.puzzle.getRows()[Sudoku.getRow(cell
 					.getPosition())]);
+			cell.setCol(Sudoku.puzzle.getCols()[Sudoku.getColumn(cell
+					.getPosition())]);
 			puzzle.setValue(cell);
 		}
 		long end = System.currentTimeMillis();
@@ -93,6 +95,10 @@ public class Sudoku {
 
 		UI.AutoExit();
 	}
+
+	// #################################################################################
+	// #################################################################################
+	// #################################################################################
 
 	public static int getLCellFor(int a) {
 		for (int x = 0; x < Sudoku.getLCellValues(0).length; x++) {
