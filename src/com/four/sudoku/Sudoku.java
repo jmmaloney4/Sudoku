@@ -231,7 +231,56 @@ public class Sudoku {
 		return rv;
 	}
 
-	public int[] getRowValues(int a) {
+	public static int getRow(int a) {
+		for (int x = 0; x < Sudoku.getRowValues(0).length; x++) {
+			if (a == Sudoku.getRowValues(0)[x]) {
+				return 0;
+			}
+		}
+		for (int x = 0; x < Sudoku.getRowValues(1).length; x++) {
+			if (a == Sudoku.getRowValues(1)[x]) {
+				return 1;
+			}
+		}
+		for (int x = 0; x < Sudoku.getRowValues(2).length; x++) {
+			if (a == Sudoku.getRowValues(2)[x]) {
+				return 2;
+			}
+		}
+		for (int x = 0; x < Sudoku.getRowValues(3).length; x++) {
+			if (a == Sudoku.getRowValues(3)[x]) {
+				return 3;
+			}
+		}
+		for (int x = 0; x < Sudoku.getRowValues(4).length; x++) {
+			if (a == Sudoku.getRowValues(4)[x]) {
+				return 4;
+			}
+		}
+		for (int x = 0; x < Sudoku.getRowValues(5).length; x++) {
+			if (a == Sudoku.getRowValues(5)[x]) {
+				return 5;
+			}
+		}
+		for (int x = 0; x < Sudoku.getRowValues(6).length; x++) {
+			if (a == Sudoku.getRowValues(6)[x]) {
+				return 6;
+			}
+		}
+		for (int x = 0; x < Sudoku.getRowValues(7).length; x++) {
+			if (a == Sudoku.getRowValues(7)[x]) {
+				return 7;
+			}
+		}
+		for (int x = 0; x < Sudoku.getRowValues(8).length; x++) {
+			if (a == Sudoku.getRowValues(8)[x]) {
+				return 8;
+			}
+		}
+		return -1;
+	}
+
+	public static int[] getRowValues(int a) {
 		int[] rv = new int[9];
 		int k = 0;
 		switch (a) {
