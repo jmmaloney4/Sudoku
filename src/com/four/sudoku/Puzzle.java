@@ -18,12 +18,7 @@ public class Puzzle {
 	public Cell setValue(Cell u) {
 		int pos = u.getPosition();
 		this.contents[pos] = u;
-		for (int a = 0;; a++) {
-			if (a == pos) {
-
-			}
-		}
-		// return u;
+		return u;
 	}
 
 	public Cell[] getContents() {
