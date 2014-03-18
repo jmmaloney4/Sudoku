@@ -21,4 +21,8 @@ public abstract class Group {
 		return this.position;
 	}
 
+	public void update(Cell u) {
+
+	}
+
 }

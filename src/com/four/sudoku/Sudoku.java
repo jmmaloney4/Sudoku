@@ -80,15 +80,18 @@ public class Sudoku {
 			cell.setValue(readfile[d]);
 			cell.setPosition(d);
 			cell.setPuzzle(Sudoku.puzzle);
+			System.out.println(Sudoku.getLCellFor(cell.getPosition()));
 			cell.setParent(Sudoku.puzzle.getLCells()[Sudoku.getLCellFor(cell
 					.getPosition())]);
-			System.out.println(cell.getPosition());
 			cell.setRow(Sudoku.puzzle.getRows()[Sudoku.getRow(cell
 					.getPosition())]);
 			cell.setCol(Sudoku.puzzle.getCols()[Sudoku.getColumn(cell
 					.getPosition())]);
 			puzzle.setValue(cell);
 		}
+
+		puzzle.Solve();
+
 		long end = System.currentTimeMillis();
 		System.out.println("It took " + (end - start)
 				+ " Miliseconds to solve your sudoku problem");

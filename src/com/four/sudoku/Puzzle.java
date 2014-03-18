@@ -18,6 +18,7 @@ public class Puzzle {
 	public Cell setValue(Cell u) {
 		int pos = u.getPosition();
 		this.contents[pos] = u;
+		this.update(u);
 		return u;
 	}
 
@@ -54,5 +55,11 @@ public class Puzzle {
 	public int getLCellForArrayPos(int a) {
 		int r = 0;
 		return r;
+	}
+
+	public void update(Cell u) {
+		u.getParent().update(u);
+		u.getRow().update(u);
+		u.getCol().update(u);
 	}
 }
