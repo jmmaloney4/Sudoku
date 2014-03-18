@@ -48,6 +48,8 @@ public class Sudoku {
 			fis = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
 			UI.SetText("File Was Not Found At: " + args[0]);
+			Thread.sleep(2000);
+			UI.AutoExit();
 		}
 		scanner = new Scanner(fis);
 		scanner.useDelimiter(COMMA_PATTERN);
@@ -78,7 +80,11 @@ public class Sudoku {
 			cell.setValue(readfile[d]);
 			cell.setPosition(d);
 			cell.setPuzzle(Sudoku.puzzle);
-
+			cell.setParent(Sudoku.puzzle.getLCells()[Sudoku.getLCellFor(cell
+					.getPosition())]);
+			System.out.println(cell.getPosition());
+			cell.setRow(Sudoku.puzzle.getRows()[Sudoku.getRow(cell
+					.getPosition())]);
 			puzzle.setValue(cell);
 		}
 		long end = System.currentTimeMillis();
@@ -291,56 +297,56 @@ public class Sudoku {
 			break;
 		case 1:
 			k = 0;
-			for (int c = 9; c < rv.length; c++) {
+			for (int c = 9; c < rv.length + 9; c++) {
 				rv[k] = c;
 				k++;
 			}
 			break;
 		case 2:
 			k = 0;
-			for (int c = 18; c < rv.length; c++) {
+			for (int c = 18; c < rv.length + 18; c++) {
 				rv[k] = c;
 				k++;
 			}
 			break;
 		case 3:
 			k = 0;
-			for (int c = 27; c < rv.length; c++) {
+			for (int c = 27; c < rv.length + 27; c++) {
 				rv[k] = c;
 				k++;
 			}
 			break;
 		case 4:
 			k = 0;
-			for (int c = 36; c < rv.length; c++) {
+			for (int c = 36; c < rv.length + 36; c++) {
 				rv[k] = c;
 				k++;
 			}
 			break;
 		case 5:
 			k = 0;
-			for (int c = 45; c < rv.length; c++) {
+			for (int c = 45; c < rv.length + 45; c++) {
 				rv[k] = c;
 				k++;
 			}
 			break;
 		case 6:
 			k = 0;
-			for (int c = 54; c < rv.length; c++) {
+			for (int c = 54; c < rv.length + 54; c++) {
 				rv[k] = c;
 				k++;
 			}
 			break;
 		case 7:
-			k = 63;
-			for (int c = 9; c < rv.length; c++) {
+			k = 0;
+			for (int c = 63; c < rv.length + 63; c++) {
 				rv[k] = c;
 				k++;
 			}
 			break;
 		case 8:
-			k = 72;
-			for (int c = 9; c < rv.length; c++) {
+			k = 0;
+			for (int c = 72; c < rv.length + 72; c++) {
 				rv[k] = c;
 				k++;
 			}
@@ -348,6 +354,116 @@ public class Sudoku {
 		}
 
 		return rv;
+	}
 
+	public static int[] getColumnValues(int a) {
+		int[] rv = new int[9];
+		int k = 0;
+		switch (a) {
+		case 0:
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = c * 9;
+			}
+			break;
+		case 1:
+			k = 1;
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = (c * 9) + k;
+			}
+			break;
+		case 2:
+			k = 2;
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = (c * 9) + k;
+			}
+			break;
+		case 3:
+			k = 3;
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = (c * 9) + k;
+			}
+			break;
+		case 4:
+			k = 4;
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = (c * 9) + k;
+			}
+			break;
+		case 5:
+			k = 5;
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = (c * 9) + k;
+			}
+			break;
+		case 6:
+			k = 6;
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = (c * 9) + k;
+			}
+			break;
+		case 7:
+			k = 7;
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = (c * 9) + k;
+			}
+			break;
+		case 8:
+			k = 8;
+			for (int c = 0; c < rv.length; c++) {
+				rv[c] = (c * 9) + k;
+			}
+			break;
+		}
+
+		return rv;
+	}
+
+	public static int getColumn(int a) {
+		for (int x = 0; x < Sudoku.getColumnValues(0).length; x++) {
+			if (a == Sudoku.getColumnValues(0)[x]) {
+				return 0;
+			}
+		}
+		for (int x = 0; x < Sudoku.getColumnValues(1).length; x++) {
+			if (a == Sudoku.getColumnValues(1)[x]) {
+				return 1;
+			}
+		}
+		for (int x = 0; x < Sudoku.getColumnValues(2).length; x++) {
+			if (a == Sudoku.getColumnValues(2)[x]) {
+				return 2;
+			}
+		}
+		for (int x = 0; x < Sudoku.getColumnValues(3).length; x++) {
+			if (a == Sudoku.getColumnValues(3)[x]) {
+				return 3;
+			}
+		}
+		for (int x = 0; x < Sudoku.getColumnValues(4).length; x++) {
+			if (a == Sudoku.getColumnValues(4)[x]) {
+				return 4;
+			}
+		}
+		for (int x = 0; x < Sudoku.getColumnValues(5).length; x++) {
+			if (a == Sudoku.getColumnValues(5)[x]) {
+				return 5;
+			}
+		}
+		for (int x = 0; x < Sudoku.getColumnValues(6).length; x++) {
+			if (a == Sudoku.getColumnValues(6)[x]) {
+				return 6;
+			}
+		}
+		for (int x = 0; x < Sudoku.getColumnValues(7).length; x++) {
+			if (a == Sudoku.getColumnValues(7)[x]) {
+				return 7;
+			}
+		}
+		for (int x = 0; x < Sudoku.getColumnValues(8).length; x++) {
+			if (a == Sudoku.getColumnValues(8)[x]) {
+				return 8;
+			}
+		}
+		return -1;
 	}
 }
